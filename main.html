@@ -18,10 +18,10 @@
 <body class="geist bg-[#F8FAFC]">
     <header>
 <!-- navbar -->
-    <div class="navbar bg-base-100 shadow-sm px-4 bg-white">
+    <div class="navbar flex-col gap-5 md:flex-row bg-base-100 shadow-sm px-4 bg-white">
     <div class="flex-1 flex items-center gap-2">
       <img src="./assets/github-logo.png" alt="GitHub Logo" class="w-10 h-10">
-      <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+      <h1 class="md:text-2xl text-xl font-bold">GitHub Issues Tracker</h1>
     </div>
     <div class="flex items-center gap-3">
       <div class="relative">
@@ -36,11 +36,7 @@
         <label tabindex="0" class="btn bg-primary text-white whitespace-nowrap">
           New Issue <i class="fa-solid fa-plus ml-1"></i>
         </label>
-        <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-2 w-52 p-2">
-          <li><a class="justify-between"><span>New Issue</span><span class="badge">New</span></a></li>
-          <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
-        </ul>
+
       </div>
     </div>
   </div>
@@ -50,20 +46,19 @@
 <!-- buttons -->
 
 <div class="my-20 bg-white p-5 shadow-lg m-auto ">
-<button id="all_btn" class="btn btn-primary px-6 py-3 font-normal ">All</button>
-<button class="btn px-6 py-3 font-normal text-black">Open</button>
-<button class="btn px-6 py-3 font-normal text-black">Closed</button>
+<button id="all_btn" onclick="indicator('all_btn')" class="btn px-6 py-3 font-normal bg-primary text-white">All</button>
+<button id="open_btn" onclick="indicator('open_btn')" class="btn px-6 py-3 font-normal text-black bg-white">Open</button>
+<button id="close_btn" onclick="indicator('close_btn')" class="btn px-6 py-3 font-normal text-black bg-white">Closed</button>
 </div>
 
 <!-- isseus heading -->
- <div class="mt-20 bg-white p-5 shadow-lg m-auto flex items-center justify-between gap-5 rounded-lg">
+ <div class="mt-20 bg-white p-5 flex-col md:flex-row  shadow-lg m-auto flex items-start md:items-center justify-between gap-5 rounded-lg">
   <div class="w-13 h-13 rounded-full bg-[#ECE4FF] flex items-center justify-center">
     <img src="./assets/Aperture.png" alt="" class="w-6 h-6">
   </div>
 
-  <div class="flex-1">
-    <h1 class="font-semibold text-2xl">50 Issues</h1>
-    <p class="text-[#64748B]">Track and manage your project issues</p>
+  <div id="display_number" class="flex-1">
+  
   </div>
 
   <div class="flex gap-2 items-center">
@@ -76,30 +71,16 @@
     <span>Closed</span>
   </div>
 </div>
+<!-- loader -->
+<div id="spin" class="flex items-center justify-center my-5 hidden">
+<progress class="progress w-1/2 text-primary"></progress>
 
+</div>
 <!-- issue_card -->
 
 <div id="card_sec" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
     
-  <!-- Single Issue Card -->
-  <!-- <div class="bg-white rounded-lg shadow p-5 flex flex-col justify-between border-t-4 border-green-500">
-    <div class="flex justify-between items-start">
-        <img src="./assets/Open-Status.png" alt="">
-    <span class="text-sm md:text-base font-semibold text-green-700 bg-green-100 px-3 py-1.5 rounded-2xl shadow-sm hover:bg-green-200 transition-all duration-300">
-  HIGH
-</span>
-    </div>
-    <h2 class="text-md font-semibold mt-2">Fix Navigation Menu On Mobile Devices</h2>
-    <p class="text-gray-500 text-sm mt-1">The navigation menu doesn't collapse properly on mobile devices...</p>
-    <div class="flex flex-wrap gap-2 my-3">
-      <span class="badge badge-outline badge-error bg-red-100">BUG</span>
-      <span class="badge badge-outline badge-warning bg-yellow-100">HELP WANTED</span>
-    </div>
-    <hr class=" opacity-20">
-    <div class=" text-gray-400 text-xs mt-3 space-y-3">
-      <p>by john_doe</p>
-      <p>1/15/2024</p>
-    </div> -->
+ <!-- card_from js -->
   </div>
 
 
