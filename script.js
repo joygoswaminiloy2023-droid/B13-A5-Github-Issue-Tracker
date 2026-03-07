@@ -64,6 +64,8 @@ else{
    priority="gray"
 }
 
+
+
     const child_card_sec=document.createElement("div");
     child_card_sec.className=`bg-white rounded-lg shadow p-5 flex flex-col justify-between border-t-4 ${border_color}`
 
@@ -79,8 +81,7 @@ else{
     <h2 class="text-md font-semibold mt-2">${element.title}</h2>
     <p class="text-gray-500 text-sm mt-1">${element.description}</p>
     <div class="flex flex-wrap gap-2 my-3">
-      <span class="badge badge-outline badge-error bg-red-100">BUG</span>
-      <span class="badge badge-outline badge-warning bg-yellow-100">HELP WANTED</span>
+    ${labels_display(element.labels)}
     </div>
     <hr class=" opacity-20">
     <div class=" text-gray-500 text-sm mt-3 space-y-3">
@@ -137,3 +138,52 @@ const indicator = (id) => {
   btn.classList.remove("bg-white", "text-black");
   btn.classList.add("bg-primary", "text-white");   
 };
+
+// display labels
+
+
+function labels_display(arr){
+  const new_arr = arr.map(el => {
+    let color = "bg-gray-100";
+
+    if(el==="bug"){
+      color="bg-red-100 badge-error";
+    }
+    else if(el==="help wanted"){
+      color="bg-yellow-100 badge-warning";
+    }
+    else if(el==="good first issue" || el==="enhancement"){
+      color="bg-green-100 badge-success";
+    }
+    else if(el==="documentation"){
+       color="bg-purple-100 badge-primary";
+    }
+
+    return`<span class="badge badge-outline ${color}">
+      ${el}
+    </span>`;
+  });
+
+  return new_arr.join(" ");
+}
+
+// search issue
+document.getElementById("input_issue").addEventListener("input", () => {
+
+  let input = document.getElementById("input_issue").value.trim().toLowerCase();
+  console.log(input);
+
+
+
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`)
+    .then(res => res.json())
+    .then(data => {
+if(input===""){
+  load_data(allissues);
+  return;
+}
+
+      load_data(data.data);
+    });
+
+});
