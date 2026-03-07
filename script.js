@@ -1,5 +1,6 @@
 
 let allissues = [];
+
     // fecthing all data api
     const all_data=()=>{
 
@@ -264,8 +265,7 @@ document.getElementById('modal_info').innerHTML = `
   <div>
     <h4 class="text-gray-600 text-sm mb-1">Priority:</h4>
     <span class="inline-block px-4 py-1 rounded-full text-sm font-semibold uppercase tracking-wider ${
-      issue.priority === 'high' ? 'bg-red-100 text-red-600' :
-      issue.priority === 'medium' ? 'bg-yellow-100 text-yellow-400' :
+     
       'bg-gray-300 text-gray-800'
     }">
       ${issue.priority}
