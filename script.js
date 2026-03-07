@@ -173,11 +173,12 @@ document.getElementById("input_issue").addEventListener("input", () => {
   let input = document.getElementById("input_issue").value.trim().toLowerCase();
   console.log(input);
 
-
+spin(true);
 
   fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`)
     .then(res => res.json())
     .then(data => {
+
 if(input===""){
   load_data(allissues);
   return;
